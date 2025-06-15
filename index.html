@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Father's Day</title>
+    <style>
+        :root {
+            --primary-color: #001f3f;
+            --secondary-color: #4a4caa;
+            --accent-color: #1a237e;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            color: white;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+            position: relative;
+            animation: gradientBG 15s ease infinite;
+            overflow-x: hidden;
+        }
+
+        @keyframes float {
+            0% { 
+                transform: translateY(-100vh) translateX(0) rotate(0deg) scale(1);
+                opacity: 0.8;
+            }
+            50% {
+                transform: translateY(0) translateX(25px) rotate(360deg) scale(1.5);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) translateX(50px) rotate(720deg) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes titleFloat {
+            0% { transform: translateY(0) rotateX(0) scale(1); }
+            50% { transform: translateY(-10px) rotateX(5deg) scale(1.1); }
+            100% { transform: translateY(0) rotateX(0) scale(1); }
+        }
+
+        @keyframes frameFloat {
+            0% { transform: translateY(0) rotate(0) scale(1); }
+            50% { transform: translateY(-15px) rotate(5deg) scale(1.05); }
+            100% { transform: translateY(0) rotate(0) scale(1); }
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50% }
+            50% { background-position: 100% 50% }
+            100% { background-position: 0% 50% }
+        }
+
+        h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: titleFloat 4s ease-in-out infinite;
+            background: linear-gradient(45deg, #fff, #f0f0f0);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px auto;
+            max-width: 600px;
+            line-height: 1.6;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transform: translateY(0);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+                        inset 0 0 15px rgba(255, 255, 255, 0.1);
+        }
+
+        .message:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(255, 255, 255, 0.2);
+        }
+
+        .photo-frame {
+            width: 250px;
+            height: 250px;
+            margin: 30px auto;
+            border: 12px solid rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            animation: frameFloat 6s ease-in-out infinite;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3),
+                        inset 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .photo-frame::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.2));
+            z-index: 1;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 24px;
+            animation: float 6s linear infinite;
+            text-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3em; }
+            .message { font-size: 1.2em; }
+            .photo-frame {
+                width: 200px;
+                height: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Father's Day</h1>
+
+    </div>
+    <div class="photo-frame">
+        <img src="Father's Day.jpg" alt="Father's Photo" style="width: 100%; height: 100%; object-fit: cover;">
+    </div>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.innerHTML = '❤';
+            heart.style.color = `hsl(${Math.random() * 60 + 330}, 100%, 50%)`;
+            heart.style.fontSize = `${Math.random() * 20 + 15}px`;
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        setInterval(createHeart, 300);
+
+        // Add parallax effect
+        document.addEventListener('mousemove', (e) => {
+            const mouseX = e.clientX / window.innerWidth;
+            const mouseY = e.clientY / window.innerHeight;
+            
+            document.querySelector('h1').style.transform = 
+                `translate(${mouseX * 20}px, ${mouseY * 20}px)`;
+            
+            document.querySelector('.photo-frame').style.transform = 
+                `translate(${mouseX * 30}px, ${mouseY * 30}px)`;
+        });
+</script>
+<style>
+    .notebook {
+        background: #f5f5f5;
+        padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin: 20px auto;
+            max-width: 400px; /* reduced from 600px */
+            position: relative;
+            transform: scale(0.8); /* makes it 80% of original size */
+            transition: transform 0.3s ease; /* smooth transition */
+        }
+
+        .notebook:hover {
+            transform: scale(1.1); /* makes it 110% of original size on hover */
+        }
+
+        .notebook:before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #ff0000;
+        }
+
+        .notebook p {
+            margin: 0;
+            padding: 10px 40px;
+            line-height: 25px;
+            background: linear-gradient(180deg, transparent 0px, transparent 24px, #ddd 24px);
+            background-size: 100% 25px;
+            color: #333;
+            font-family: 'Comic Sans MS', cursive;
+            text-align: left;
+            min-height: 200px;
+        }
+    </style>
+    <div class="notebook">
+        <p>
+            Thank you for being an amazing father. Your love, guidance, and support mean the world to me. I hope this day brings you as much joy as you have given me throughout my life. You are my hero, my role model, and my best friend. Happy Father's Day! I love you so much!
+    </div>
+    <button style="padding: 15px 30px; 
+                   font-size: 1.2em; 
+                   margin: 20px; 
+                   border-radius: 25px; 
+                   background: rgba(255, 255, 255, 0.2); 
+                   color: white; 
+                   border: 2px solid white; 
+                   cursor: pointer; 
+                   transition: all 0.3s ease;
+                   backdrop-filter: blur(5px);"
+            onmouseover="this.style.transform='scale(1.1)'" 
+            onmouseout="this.style.transform='scale(1)'">
+        <a href="homepage.html" style="text-decoration: none; color: white;">Click Me!</a>
+    </button>
+</body>
+</html>
